@@ -2,16 +2,26 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "google-cloud-console-opener",
   "title": "Google Cloud Console Opener",
-  "description": "",
-  "icon": "extension-icon.png",
+  "description": "Open selected Google Cloud service",
+  "icon": "google-cloud.svg",
   "author": "ikorihn",
   "license": "MIT",
   "commands": [
     {
       "name": "google-cloud-console-opener",
-      "title": "google-cloud-console-opener",
-      "description": "",
+      "title": "Select Google Cloud Service",
+      "description": "Select Google Cloud service and project id",
       "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "placeholder": "dev-project-abc123,prd-project-def456",
+      "description": "Please specify Google Cloud Project IDs delimited by comma",
+      "name": "projectIds",
+      "required": true,
+      "title": "Projects",
+      "type": "textfield"
     }
   ],
   "dependencies": {
