@@ -1,4 +1,7 @@
-import { ActionPanel, Detail, List, Action, Icon, open } from "@raycast/api";
+import { ActionPanel, Detail, List, Action, Icon, open, getPreferenceValues } from "@raycast/api";
+
+const preferences = getPreferenceValues<Preferences>();
+const projectIds = preferences.projectIds.split(",");
 
 // 全サービスじゃないしGoogle Cloudに追従しないといけない
 const consoleUrls = [
@@ -30,9 +33,6 @@ const consoleUrls = [
   { service: "Eventarc", path: "eventarc/triggers", icon: "google-cloud-icons/eventarc/eventarc.svg" },
 ];
 
-// TODO projectsは外から設定する
-const projects = [""];
-
 export default function Command() {
   return (
     <List>
@@ -55,17 +55,14 @@ export default function Command() {
 const SelectProject = (path: string) => {
   return (
     <List>
-      {projects.map((item, index) => (
+      {projectIds.map((item, index) => (
         <List.Item
           key={item}
           icon={Icon.Link}
           title={item}
           actions={
             <ActionPanel>
-              <Action
-                title="Jump to link"
-                onAction={() => open(`https://console.cloud.google.com/${path}?project=${item}`)}
-              />
+              <Action title="Jump to link" onAction={() => open(`https://console.cloud.google.com/${path}?project=${item}`, "Google Chrome")} />
             </ActionPanel>
           }
         />
