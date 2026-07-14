@@ -12,6 +12,12 @@
       "title": "Select Google Cloud Service",
       "description": "Select Google Cloud service and project id",
       "mode": "view"
+    },
+    {
+      "name": "google-cloud-copy-project",
+      "title": "Copy Google Cloud project",
+      "description": "Copy Google Cloud project id to clipboard",
+      "mode": "view"
     }
   ],
   "preferences": [
