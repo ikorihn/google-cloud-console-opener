@@ -12,6 +12,7 @@ export default function Command() {
           key={item.projectId}
           icon={Icon.Bolt}
           title={`${item.projectId}:${item.projectNumber}`}
+          keywords={[item.projectId, item.projectNumber]}
           actions={
             <ActionPanel>
               <Action.CopyToClipboard title="Copy projectId" content={item.projectId} />
