@@ -28,6 +28,15 @@
       "required": true,
       "title": "Projects",
       "type": "textfield"
+    },
+    {
+      "placeholder": "/opt/homebrew/bin/gcloud",
+      "description": "Path to gcloud CLI used to list Cloud Run resources",
+      "name": "gcloudPath",
+      "required": false,
+      "default": "gcloud",
+      "title": "gcloud Path",
+      "type": "textfield"
     }
   ],
   "dependencies": {

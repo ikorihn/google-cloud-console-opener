@@ -1,4 +1,6 @@
-import { ActionPanel, List, Action, Icon, open, getPreferenceValues } from "@raycast/api";
+import { ActionPanel, List, Action, Icon, getPreferenceValues } from "@raycast/api";
+import { LoggingQueryList } from "./logging-query";
+import { openAndClose } from "./open-and-close";
 import { ProjectId } from "./preference";
 
 const preferences = getPreferenceValues<Preferences>();
@@ -45,7 +47,7 @@ const consoleUrls = [
 export default function Command() {
   return (
     <List>
-      {consoleUrls.map((item, index) => (
+      {consoleUrls.map((item) => (
         <List.Item
           key={item.service}
           icon={item.icon || "google-cloud.svg"}
@@ -64,14 +66,18 @@ export default function Command() {
 const SelectProject = (path: string) => {
   return (
     <List>
-      {projectIds.map((item, index) => (
+      {projectIds.map((item) => (
         <List.Item
           key={item.projectId}
           icon={Icon.Link}
           title={item.projectId}
           actions={
             <ActionPanel>
-              <Action title="Jump to link" onAction={() => open(`https://console.cloud.google.com/${path}?project=${item.projectId}`)} />
+              {path === "logs" ? (
+                <Action.Push title="Build Query" target={<LoggingQueryList projectId={item.projectId} />} />
+              ) : (
+                <Action title="Jump to Link" onAction={() => openAndClose(`https://console.cloud.google.com/${path}?project=${item.projectId}`)} />
+              )}
             </ActionPanel>
           }
         />
